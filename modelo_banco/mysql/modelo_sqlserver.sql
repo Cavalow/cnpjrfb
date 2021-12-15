@@ -18,15 +18,19 @@ WHERE s.name = @SCHEMA_DEFAULT_NAME;
 --  select * from sys.schemas s;
 
 -- Apaga todas as tabelas 
+
+DROP TABLE IF EXISTS empresa ;
+DROP TABLE IF EXISTS socios ;
+DROP TABLE IF EXISTS simples ;
+DROP TABLE IF EXISTS estabelecimento ;
+
 DROP TABLE IF EXISTS cnae ;
 DROP TABLE IF EXISTS natju ;
 DROP TABLE IF EXISTS quals ;
 DROP TABLE IF EXISTS pais ;
 DROP TABLE IF EXISTS moti ;
 DROP TABLE IF EXISTS munic ;
-DROP TABLE IF EXISTS estabelecimento ;
-DROP TABLE IF EXISTS simples ;
-DROP TABLE IF EXISTS empresa ;
+
 
 
 -- -----------------------------------------------------
@@ -197,11 +201,12 @@ CREATE TABLE estabelecimento (
   correio_eletronico VARCHAR(45) NULL,
   situacao_especial VARCHAR(45) NULL,
   data_situacao_especial DATE NULL,
-	CONSTRAINT [PK_CNPJ_BASICO] PRIMARY KEY CLUSTERED 
+  CONSTRAINT [PK_ESTABELECIMENTO_CNPJ_BASICO] PRIMARY KEY CLUSTERED 
 		  (
 			cnpj_basico ASC
 		  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-   )ON [PRIMARY]
+   )ON [PRIMARY] 
+
 
 CREATE INDEX fk_estabelecimento_pais_idx ON estabelecimento (pais ASC);
 CREATE INDEX fk_estabelecimento_munic1_idx ON estabelecimento (municipio ASC);
@@ -290,6 +295,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'data_situacao_
 
 
 CREATE TABLE simples (
+  idSimples INT IDENTITY(1,1) NOT NULL,  
   cnpj_basico CHAR(8) NOT NULL,
   opcao_pelo_simples CHAR(1) NULL,
   data_opcao_simples DATE NULL,
@@ -299,7 +305,7 @@ CREATE TABLE simples (
   data_exclusao_mei DATE NULL,
 CONSTRAINT [PK_SIMPLES_CNPJ_BASICO] PRIMARY KEY CLUSTERED 
 		  (
-			cnpj_basico ASC
+			idSimples ASC
 		  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
    )ON [PRIMARY]
 
@@ -332,6 +338,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'DATA DE EXCLUS
 -- -----------------------------------------------------
 
 CREATE TABLE socios (
+  idSocios INT IDENTITY(1,1) NOT NULL,  
   cnpj_basico CHAR(8) NOT NULL,
   identificador_socio INT NOT NULL,
   nome_socio_razao_social VARCHAR(1000) NULL,
@@ -343,9 +350,9 @@ CREATE TABLE socios (
   nome_do_representante VARCHAR(500) NULL,
   qualificacao_representante_legal INT NULL,
   faixa_etaria INT NULL,
-CONSTRAINT [PK_SOCIOS_CNPJ_BASICO] PRIMARY KEY CLUSTERED 
+CONSTRAINT [PK_SOCIOS] PRIMARY KEY CLUSTERED 
 		  (
-			cnpj_basico ASC
+			idSocios ASC
 		  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
    )ON [PRIMARY]
 
@@ -407,6 +414,7 @@ CONSTRAINT [PK_EMPRESA_CNPJ_BASICO] PRIMARY KEY CLUSTERED
 			cnpj_basico ASC
 		  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
    )ON [PRIMARY]
+
 
 CREATE INDEX fk_empresa_estabelecimento1_idx ON empresa (cnpj_basico ASC);
 CREATE INDEX fk_empresa_natju1_idx ON empresa (natureza_juridica ASC);
