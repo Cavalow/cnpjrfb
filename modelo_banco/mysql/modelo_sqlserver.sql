@@ -301,14 +301,14 @@ CREATE TABLE simples (
   data_exclusao_simples DATE NULL,
   opcao_mei CHAR(1) NULL,
   data_opcao_mei DATE NULL,
-  data_exclusao_mei DATE NULL,
+  data_exclusao_mei DATE NULL)/*,
 CONSTRAINT [PK_SIMPLES_CNPJ_BASICO] PRIMARY KEY CLUSTERED 
 		  (
 			cnpj_basico ASC
 		  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
    )ON [PRIMARY]
 
-
+   */
 CREATE INDEX fk_simples_estabelecimento1_idx ON simples (cnpj_basico ASC);
 
 /*
