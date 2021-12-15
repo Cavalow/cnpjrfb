@@ -21,7 +21,7 @@ CREATE TABLE `estabelecimento` (
   `cnpj_dv` char(2) NOT NULL,
   `identificador_matriz_filial` char(1) NOT NULL,
   `nome_fantasia` varchar(1000) NULL,
-  `situacao_cadastral` char(1) NOT NULL,
+  `situacao_cadastral` char(2) NOT NULL,
   `data_situacao_cadastral` date NULL,
   `motivo_situacao_cadastral` int NOT NULL,
   `nome_cidade_exterior` varchar(45) NULL,
