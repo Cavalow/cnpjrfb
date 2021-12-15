@@ -57,7 +57,7 @@ exec sp_executesql @sql;
 -- Table 'cnae'
 -- -----------------------------------------------------
 CREATE TABLE cnae (
-			  codigo INT NOT NULL,
+			  codigo VARCHAR(10) NOT NULL,
 			  descricao VARCHAR(1000) NOT NULL,
 			  CONSTRAINT [PK_CNAE] PRIMARY KEY CLUSTERED 
 			  (
@@ -76,7 +76,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Descrição do
 -- -----------------------------------------------------
 
 CREATE TABLE natju (
-			  codigo INT NOT NULL,
+			  codigo VARCHAR(10) NOT NULL,
 			  descricao VARCHAR(1000) NOT NULL,
   			  CONSTRAINT [PK_NATJU] PRIMARY KEY CLUSTERED 
 			  (
@@ -95,7 +95,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Descrição do
 -- -----------------------------------------------------
 
 CREATE TABLE quals (
-				  codigo INT NOT NULL,
+				  codigo VARCHAR(10) NOT NULL,
 				  descricao VARCHAR(1000) NOT NULL,
     			  CONSTRAINT [PK_QUALS] PRIMARY KEY CLUSTERED 
 			  (
@@ -114,7 +114,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Descrição do
 -- -----------------------------------------------------
 
 CREATE TABLE pais (
-				codigo INT NOT NULL,
+				codigo VARCHAR(10) NOT NULL,
 				descricao VARCHAR(500) NOT NULL,
       			  CONSTRAINT [PK_PAIS] PRIMARY KEY CLUSTERED 
 			  (
@@ -133,7 +133,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Descrição do
 -- -----------------------------------------------------
 
 CREATE TABLE moti (
-				  codigo INT NOT NULL,
+				  codigo VARCHAR(10) NOT NULL,
 				  descricao VARCHAR(1000) NOT NULL,
          			  CONSTRAINT [PK_MOTI] PRIMARY KEY CLUSTERED 
 			  (
@@ -152,7 +152,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Descrição do
 -- -----------------------------------------------------
 
 CREATE TABLE munic (
-					  codigo INT NOT NULL,
+					  codigo VARCHAR(10) NOT NULL,
 					  descricao VARCHAR(1000) NOT NULL,
              		 CONSTRAINT [PK_MUNIC] PRIMARY KEY CLUSTERED 
 			  (
@@ -176,31 +176,33 @@ CREATE TABLE estabelecimento (
   cnpj_dv CHAR(2) NOT NULL,
   identificador_matriz_filial CHAR(1) NOT NULL,
   nome_fantasia VARCHAR(1000) NULL,
-  situacao_cadastral CHAR(2) NOT NULL,
-  data_situacao_cadastral DATE NULL,
-  motivo_situacao_cadastral INT NOT NULL,
-  nome_cidade_exterior VARCHAR(45) NULL,
-  pais INT NULL,
-  data_inicio_atividade DATETIME NULL,
-  cnae_fiscal_principal INT NOT NULL,
+  situacao_cadastral VARCHAR(1000) NOT NULL,
+  data_situacao_cadastral VARCHAR(1000) NULL,
+  motivo_situacao_cadastral VARCHAR(1000) NOT NULL,
+  nome_cidade_exterior VARCHAR(1000) NULL,
+  pais VARCHAR(1000) NULL,
+  data_inicio_atividade VARCHAR(1000) NULL,
+  cnae_fiscal_principal VARCHAR(1000) NOT NULL,
   cnae_fiscal_secundaria VARCHAR(1000) NULL,
   tipo_logradouro VARCHAR(500) NULL,
   logradouro VARCHAR(1000) NULL,
-  numero VARCHAR(45) NULL,
-  complemento VARCHAR(100) NULL,
-  bairro VARCHAR(45) NULL,
-  cep VARCHAR(45) NULL,
-  uf VARCHAR(45) NULL,
-  municipio INT NULL,
-  ddd_1 VARCHAR(45) NULL,
-  telefone_1 VARCHAR(45) NULL,
-  ddd_2 VARCHAR(45) NULL,
-  telefone_2 VARCHAR(45) NULL,
-  ddd_fax VARCHAR(45) NULL,
-  fax VARCHAR(45) NULL,
-  correio_eletronico VARCHAR(45) NULL,
-  situacao_especial VARCHAR(45) NULL,
-  data_situacao_especial DATE NULL,
+  numero VARCHAR(1000) NULL,
+  complemento VARCHAR(1000) NULL,
+  bairro VARCHAR(1000) NULL,
+  cep VARCHAR(1000) NULL,
+  uf VARCHAR(1000) NULL,
+  municipio VARCHAR(1000) NULL,
+  ddd_1 VARCHAR(1000) NULL,
+  telefone_1 VARCHAR(1000) NULL,
+  ddd_2 VARCHAR(1000) NULL,
+  telefone_2 VARCHAR(1000) NULL,
+  ddd_fax VARCHAR(1000) NULL,
+  fax VARCHAR(1000) NULL,
+  correio_eletronico VARCHAR(1000) NULL,
+  situacao_especial VARCHAR(1000) NULL,
+  data_situacao_especial VARCHAR(1000) NULL)/*,
+  )
+
   CONSTRAINT [PK_ESTABELECIMENTO_CNPJ_BASICO] PRIMARY KEY CLUSTERED 
 		  (
 			cnpj_basico ASC
@@ -228,6 +230,7 @@ ALTER TABLE estabelecimento CHECK CONSTRAINT [fk_estabelecimento_cnae1]
 ALTER TABLE estabelecimento  WITH CHECK ADD  CONSTRAINT [fk_estabelecimento_moti1] FOREIGN KEY([motivo_situacao_cadastral])
 REFERENCES moti ([codigo])
 ALTER TABLE estabelecimento CHECK CONSTRAINT [fk_estabelecimento_moti1]
+*/
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'COMMENT NÚMERO BASE DE INSCRIÇÃO NO CNPJ (OITO PRIMEIROS DÍGITOS DO CNPJ).' , @level0type=N'SCHEMA',@level0name= @schema_default_name, @level1type=N'TABLE',@level1name=N'ESTABELECIMENTO', @level2type=N'COLUMN',@level2name=N'cnpj_basico'
 
@@ -298,11 +301,11 @@ CREATE TABLE simples (
   idSimples INT IDENTITY(1,1) NOT NULL,  
   cnpj_basico CHAR(8) NOT NULL,
   opcao_pelo_simples CHAR(1) NULL,
-  data_opcao_simples DATE NULL,
-  data_exclusao_simples DATE NULL,
+  data_opcao_simples VARCHAR(1000) NULL,
+  data_exclusao_simples VARCHAR(1000) NULL,
   opcao_mei CHAR(1) NULL,
-  data_opcao_mei DATE NULL,
-  data_exclusao_mei DATE NULL,
+  data_opcao_mei VARCHAR(1000) NULL,
+  data_exclusao_mei VARCHAR(1000) NULL)/*,
 CONSTRAINT [PK_SIMPLES_CNPJ_BASICO] PRIMARY KEY CLUSTERED 
 		  (
 			idSimples ASC
@@ -316,7 +319,7 @@ CREATE INDEX fk_simples_estabelecimento1_idx ON simples (cnpj_basico ASC);
 ALTER TABLE simples  WITH CHECK ADD  CONSTRAINT [fk_simples_estabelecimento1] FOREIGN KEY([cnpj_basico])
 REFERENCES estabelecimento ([cnpj_basico])
 ALTER TABLE simples CHECK CONSTRAINT [fk_simples_estabelecimento1]
-
+*/
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'NÚMERO BASE DE INSCRIÇÃO NO CNPJ (OITO PRIMEIROS DÍGITOS DO CNPJ).' , @level0type=N'SCHEMA',@level0name= @schema_default_name, @level1type=N'TABLE',@level1name=N'SIMPLES', @level2type=N'COLUMN',@level2name=N'cnpj_basico'
 
@@ -344,12 +347,12 @@ CREATE TABLE socios (
   nome_socio_razao_social VARCHAR(1000) NULL,
   cpf_cnpj_socio VARCHAR(45) NULL,
   qualificacao_socio INT NULL,
-  data_entrada_sociedade DATE NULL,
+  data_entrada_sociedade VARCHAR(1000) NULL,
   pais INT NULL,
   representante_legal VARCHAR(45) NULL,
   nome_do_representante VARCHAR(500) NULL,
   qualificacao_representante_legal INT NULL,
-  faixa_etaria INT NULL,
+  faixa_etaria INT NULL)/*,
 CONSTRAINT [PK_SOCIOS] PRIMARY KEY CLUSTERED 
 		  (
 			idSocios ASC
@@ -372,7 +375,7 @@ ALTER TABLE socios CHECK CONSTRAINT [fk_socios_pais1]
 ALTER TABLE socios  WITH CHECK ADD  CONSTRAINT [fk_socios_quals2] FOREIGN KEY([qualificacao_representante_legal])
 REFERENCES quals ([codigo])
 ALTER TABLE socios CHECK CONSTRAINT [fk_socios_quals2]
-
+*/
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'NÚMERO BASE DE INSCRIÇÃO NO CNPJ (OITO PRIMEIROS DÍGITOS DO CNPJ).' , @level0type=N'SCHEMA',@level0name= @schema_default_name, @level1type=N'TABLE',@level1name=N'SOCIOS', @level2type=N'COLUMN',@level2name=N'cnpj_basico'
 
@@ -408,7 +411,7 @@ CREATE TABLE empresa (
   qualificacao_responsavel INT NULL,
   capital_social VARCHAR(45) NULL,
   porte_empresa VARCHAR(45) NULL,
-  ente_federativo_responsavel VARCHAR(45) NULL,
+  ente_federativo_responsavel VARCHAR(45) NULL)/*,
 CONSTRAINT [PK_EMPRESA_CNPJ_BASICO] PRIMARY KEY CLUSTERED 
 		  (
 			cnpj_basico ASC
@@ -433,7 +436,7 @@ ALTER TABLE empresa CHECK CONSTRAINT [fk_empresa_natju1]
 ALTER TABLE empresa  WITH CHECK ADD  CONSTRAINT [fk_empresa_quals1] FOREIGN KEY([qualificacao_responsavel])
 REFERENCES quals ([codigo])
 ALTER TABLE empresa CHECK CONSTRAINT [fk_empresa_quals1]
-
+*/
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'cnpj_basico' , @level0type=N'SCHEMA',@level0name= @schema_default_name, @level1type=N'TABLE',@level1name=N'EMPRESA', @level2type=N'COLUMN',@level2name=N'cnpj_basico'
   
