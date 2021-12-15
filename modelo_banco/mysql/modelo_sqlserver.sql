@@ -347,14 +347,14 @@ CREATE TABLE socios (
   representante_legal VARCHAR(45) NULL,
   nome_do_representante VARCHAR(500) NULL,
   qualificacao_representante_legal INT NULL,
-  faixa_etaria INT NULL,
+  faixa_etaria INT NULL)/*,
 CONSTRAINT [PK_SOCIOS_CNPJ_BASICO] PRIMARY KEY CLUSTERED 
 		  (
 			cnpj_basico ASC
 		  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
    )ON [PRIMARY]
 
-
+*/
 CREATE INDEX fk_socios_quals1_idx ON socios (qualificacao_socio ASC);
 CREATE INDEX fk_socios_pais1_idx ON socios (pais ASC);
 CREATE INDEX fk_socios_quals2_idx ON socios (qualificacao_representante_legal ASC);
