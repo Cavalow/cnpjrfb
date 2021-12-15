@@ -211,6 +211,7 @@ CREATE INDEX fk_estabelecimento_munic1_idx ON estabelecimento (municipio ASC);
 CREATE INDEX fk_estabelecimento_cnae1_idx ON estabelecimento (cnae_fiscal_principal ASC);
 CREATE INDEX fk_estabelecimento_moti1_idx ON estabelecimento (motivo_situacao_cadastral ASC);
 
+/*
 ALTER TABLE estabelecimento  WITH CHECK ADD  CONSTRAINT [fk_estabelecimento_pais] FOREIGN KEY([pais])
 REFERENCES pais ([codigo])
 ALTER TABLE estabelecimento CHECK CONSTRAINT [fk_estabelecimento_pais]
@@ -226,6 +227,7 @@ ALTER TABLE estabelecimento CHECK CONSTRAINT [fk_estabelecimento_cnae1]
 ALTER TABLE estabelecimento  WITH CHECK ADD  CONSTRAINT [fk_estabelecimento_moti1] FOREIGN KEY([motivo_situacao_cadastral])
 REFERENCES moti ([codigo])
 ALTER TABLE estabelecimento CHECK CONSTRAINT [fk_estabelecimento_moti1]
+*/
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'COMMENT NÚMERO BASE DE INSCRIÇÃO NO CNPJ (OITO PRIMEIROS DÍGITOS DO CNPJ).' , @level0type=N'SCHEMA',@level0name= @schema_default_name, @level1type=N'TABLE',@level1name=N'ESTABELECIMENTO', @level2type=N'COLUMN',@level2name=N'cnpj_basico'
 
