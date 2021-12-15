@@ -357,6 +357,7 @@ CREATE INDEX fk_socios_quals1_idx ON socios (qualificacao_socio ASC);
 CREATE INDEX fk_socios_pais1_idx ON socios (pais ASC);
 CREATE INDEX fk_socios_quals2_idx ON socios (qualificacao_representante_legal ASC);
 
+/*
 ALTER TABLE socios  WITH CHECK ADD  CONSTRAINT [fk_socios_quals1] FOREIGN KEY([qualificacao_socio])
 REFERENCES quals ([codigo])
 ALTER TABLE socios CHECK CONSTRAINT [fk_socios_quals1]
@@ -368,7 +369,7 @@ ALTER TABLE socios CHECK CONSTRAINT [fk_socios_pais1]
 ALTER TABLE socios  WITH CHECK ADD  CONSTRAINT [fk_socios_quals2] FOREIGN KEY([qualificacao_representante_legal])
 REFERENCES quals ([codigo])
 ALTER TABLE socios CHECK CONSTRAINT [fk_socios_quals2]
-
+*/
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'NÚMERO BASE DE INSCRIÇÃO NO CNPJ (OITO PRIMEIROS DÍGITOS DO CNPJ).' , @level0type=N'SCHEMA',@level0name= @schema_default_name, @level1type=N'TABLE',@level1name=N'SOCIOS', @level2type=N'COLUMN',@level2name=N'cnpj_basico'
 
