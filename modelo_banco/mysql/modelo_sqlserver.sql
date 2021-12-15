@@ -421,7 +421,7 @@ ALTER TABLE empresa  WITH CHECK ADD  CONSTRAINT [fk_empresa_estabelecimento1] FO
 REFERENCES estabelecimento ([cnpj_basico])
 ALTER TABLE empresa CHECK CONSTRAINT [fk_empresa_estabelecimento1]
 */
-
+/*
 ALTER TABLE empresa  WITH CHECK ADD  CONSTRAINT [fk_empresa_natju1] FOREIGN KEY([natureza_juridica])
 REFERENCES natju ([codigo])
 ALTER TABLE empresa CHECK CONSTRAINT [fk_empresa_natju1]
@@ -429,7 +429,7 @@ ALTER TABLE empresa CHECK CONSTRAINT [fk_empresa_natju1]
 ALTER TABLE empresa  WITH CHECK ADD  CONSTRAINT [fk_empresa_quals1] FOREIGN KEY([qualificacao_responsavel])
 REFERENCES quals ([codigo])
 ALTER TABLE empresa CHECK CONSTRAINT [fk_empresa_quals1]
-
+*/
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'cnpj_basico' , @level0type=N'SCHEMA',@level0name= @schema_default_name, @level1type=N'TABLE',@level1name=N'EMPRESA', @level2type=N'COLUMN',@level2name=N'cnpj_basico'
   
