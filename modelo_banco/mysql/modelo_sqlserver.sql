@@ -407,13 +407,13 @@ CREATE TABLE empresa (
   qualificacao_responsavel INT NULL,
   capital_social VARCHAR(45) NULL,
   porte_empresa VARCHAR(45) NULL,
-  ente_federativo_responsavel VARCHAR(45) NULL,
+  ente_federativo_responsavel VARCHAR(45) NULL)/*,
 CONSTRAINT [PK_EMPRESA_CNPJ_BASICO] PRIMARY KEY CLUSTERED 
 		  (
 			cnpj_basico ASC
 		  )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
    )ON [PRIMARY]
-
+   */
 CREATE INDEX fk_empresa_estabelecimento1_idx ON empresa (cnpj_basico ASC);
 CREATE INDEX fk_empresa_natju1_idx ON empresa (natureza_juridica ASC);
 CREATE INDEX fk_empresa_quals1_idx ON empresa (qualificacao_responsavel ASC);
