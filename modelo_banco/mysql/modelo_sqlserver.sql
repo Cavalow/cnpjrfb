@@ -172,7 +172,7 @@ CREATE TABLE estabelecimento (
   cnpj_dv CHAR(2) NOT NULL,
   identificador_matriz_filial CHAR(1) NOT NULL,
   nome_fantasia VARCHAR(1000) NULL,
-  situacao_cadastral CHAR(1) NOT NULL,
+  situacao_cadastral CHAR(2) NOT NULL,
   data_situacao_cadastral DATE NULL,
   motivo_situacao_cadastral INT NOT NULL,
   nome_cidade_exterior VARCHAR(45) NULL,
@@ -234,7 +234,7 @@ EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'CÓDIGO DO IDE
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'CORRESPONDE AO NOME FANTASIA' , @level0type=N'SCHEMA',@level0name= @schema_default_name, @level1type=N'TABLE',@level1name=N'ESTABELECIMENTO', @level2type=N'COLUMN',@level2name=N'nome_fantasia'
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'CÓDIGO DA SITUAÇÃO CADASTRAL:\n01 – NULA\n2 – ATIVA\n3 – SUSPENSA\n4 – INAPTA\n08 – BAIXADA' , @level0type=N'SCHEMA',@level0name= @schema_default_name, @level1type=N'TABLE',@level1name=N'ESTABELECIMENTO', @level2type=N'COLUMN',@level2name=N'situacao_cadastral'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'CÓDIGO DA SITUAÇÃO CADASTRAL:\n01 – NULA\n02 – ATIVA\n03 – SUSPENSA\n04 – INAPTA\n08 – BAIXADA' , @level0type=N'SCHEMA',@level0name= @schema_default_name, @level1type=N'TABLE',@level1name=N'ESTABELECIMENTO', @level2type=N'COLUMN',@level2name=N'situacao_cadastral'
 
 EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'DATA DO EVENTO DA SITUAÇÃO CADASTRAL' , @level0type=N'SCHEMA',@level0name= @schema_default_name, @level1type=N'TABLE',@level1name=N'ESTABELECIMENTO', @level2type=N'COLUMN',@level2name=N'data_situacao_cadastral'
 
