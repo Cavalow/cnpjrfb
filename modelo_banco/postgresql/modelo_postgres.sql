@@ -60,7 +60,7 @@ CREATE TABLE IF NOT EXISTS estabelecimento (
   ,cnpj_dv CHAR(2) NOT NULL
   ,identificador_matriz_filial CHAR(1) NOT NULL
   ,nome_fantasia VARCHAR(1000) NULL
-  ,situacao_cadastral CHAR(1) NOT NULL
+  ,situacao_cadastral CHAR(2) NOT NULL
   ,data_situacao_cadastral DATE NULL
   ,motivo_situacao_cadastral INT NOT NULL
   ,nome_cidade_exterior VARCHAR(45) NULL
